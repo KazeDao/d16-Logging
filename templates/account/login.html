@@ -1,0 +1,29 @@
+{% extends "flatpages/default.html" %}
+
+{% load static %}
+{% load account socialaccount %}
+{% block title %}Вход в систему{% endblock %}
+
+{% block content %}
+{% get_providers as socialaccount_providers %}
+<h2> Вход в систему </h2>
+
+{% if socialaccount_providers %}
+<p>Вы можете войти через свой аккаунт на сайте или же привязанный аккаунт Google. Если у вас нет аккаунта,
+    то вы можете <a href="{{ signup_url }}">зарегистрировать</a> новый аккаунт</p>
+<div class="socialaccount_ballot">
+  <ul class="socialaccount_providers">
+    {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+  </ul>
+  <div class="login-or"></div>
+</div>
+
+{% include "socialaccount/snippets/login_extra.html" %}
+
+{% endif %}
+<form method="post">
+{% csrf_token %}
+{{ form.as_p }}
+<input type="submit" value="Войти">
+</form>
+{% endblock %}

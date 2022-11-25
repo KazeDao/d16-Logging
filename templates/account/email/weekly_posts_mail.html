@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Рассылка</title>
+</head>
+<body>
+<h1>Представляем вашему вниманию новые статьи за прошедшую неделю!</h1>
+<br>
+    {% for post in news %}
+<br>
+    <a href="http://127.0.0.1:8000/news/{{ post.id }}">{{post.title}}</a>
+    <br>
+<br>
+    <i>{{post.text|truncatechars:20}}</i>
+        <hr>
+    <br>
+    {% endfor %}
+</body>
+</html>
